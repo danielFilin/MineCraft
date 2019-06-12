@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+		<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+		<title>Document</title>
+
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+
+			.sidenav {
+				height: 100%;
+				/* Full-height: remove this if you want "auto" height */
+				width: 160px;
+				/* Set the width of the sidebar */
+				position: fixed;
+				/* Fixed Sidebar (stay in place on scroll) */
+				z-index: 1;
+				/* Stay on top */
+				top: 0;
+				/* Stay at the top */
+				right: 0;
+				background-color: #111;
+				/* Black */
+				overflow-x: hidden;
+				/* Disable horizontal scroll */
+				padding-top: 20px;
+			}
+
+			/* The navigation menu links */
+			.sidenav a {
+				padding: 6px 8px 6px 16px;
+				text-decoration: none;
+				font-size: 25px;
+				color: #818181;
+				display: block;
+			}
+
+			img:hover {
+				box-shadow: 0 2px 25px rgba(192, 192, 182, 0.7);
+			}
+
+			/* When you mouse over the navigation links, change their color */
+			.sidenav a:hover {
+				color: #f1f1f1;
+			}
+
+			/* Style page content */
+			.main {
+				margin-left: 160px;
+				/* Same as the width of the sidebar */
+				padding: 0px 10px;
+			}
+
+			/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+			@media screen and (max-height: 450px) {
+				.sidenav {
+					padding-top: 15px;
+				}
+
+				.sidenav a {
+					font-size: 18px;
+				}
+			}
+
+			img {
+				height: 10vh;
+			}
+
+			.parent-div {
+				height: 100%;
+				width: 100%;
+				background-image: url('./minePic/bluesky.jpg');
+				background-size: cover;
+				background-repeat: no-repeat;
+			}
+
+			.dirt {
+				margin: 2px;
+				height: 100%;
+				width: 100%;
+				background-image: url('./minePic/dirt.jpg');
+				background-size: cover;
+			}
+
+			.tree {
+				margin: 2px;
+				height: 100%;
+				width: 100%;
+				background-image: url('./minePic/tree.jpg');
+				background-size: cover;
+			}
+
+			.treetop {
+				margin: 2px;
+				height: 100%;
+				width: 100%;
+				background-image: url('./minePic/treetop.jpg');
+				background-size: cover;
+			}
+
+			.smallRock {
+				margin: 2px;
+				height: 100%;
+				width: 100%;
+				background-image: url('./minePic/smallrocks.jpg');
+				background-size: cover;
+			}
+
+			.gold {
+				margin: 2px;
+				height: 100%;
+				width: 100%;
+				background-image: url('./minePic/gold.jpg');
+				background-size: cover;
+			}
+		</style>
+	</head>
+	<div class="container h-100 w-100">
+		<div class="sidenav">
+			<a href="#"><img id="axeImg" src="./axe.jpg"/></a>
+			<a href="#"><img id="shovel" src="./shovel.jpg"/></a>
+			<a href="#"><img id="mineAxe" src="./mineaxe.jpg"/></a>
+			<a href="#">reset button</a>
+			<a href="#">pause button</a>
+			<a href="#">play button</a>
+		</div>
+		<div class="row h-100 w-100 parent-div"></div>
+	</div>
+
+	<script>
+		let parent = $('.parent-div');
+
+		let conditions = ['cut', 'dig', 'mine'];
+		console.log(conditions.cut);
+
+		for (let i = 0; i < 20; i++) {
+			for (let x = 0; x < 20; x++) {
+				let randomNumGold = Math.ceil(Math.random() * 40);
+				let randomNumStone = Math.ceil(Math.random() * 4);
+				let el = $('<div/>');
+				el.addClass('game-tile');
+				if (i < 14) {
+					el.css({
+						width: '5%',
+						height: '5%',
+					});
+				} else if (i >= 14 && randomNumGold % 40 === 0) {
+					el.addClass('gold');
+					el.css({
+						width: '5%',
+						margin: '0',
+						height: '5%',
+					});
+				} else if (i >= 14 && randomNumStone % 4 === 0) {
+					el.addClass('smallRock');
+					el.css({
+						width: '5%',
+						margin: '0',
+						height: '5%',
+					});
+				} else if (i >= 14) {
+					el.addClass('dirt');
+					el.css({
+						width: '5%',
+						margin: '0',
+						height: '5%',
+					});
+				}
+				 if (i >= 10 && i <= 13) {
+					if (x%5 ===0) {
+						el.addClass('tree');
+						el.css({
+						width: '5%',
+						margin: '0',
+						height: '5%',
+					});
+					}
+			}
+				if (i >= 7 && i <= 9) {
+					
+					if (x%5 ===0 || x%5 ===1 || x%5 ===4) {
+						el.addClass('treetop');
+						el.css({
+						width: '5%',
+						margin: '0',
+						height: '5%',
+					});
+					}
+			}
+			parent.append(el);
+		}
+	}
+		checkConditions = () => {
+			if ('cut'.indexOf(conditions)) {
+			}
+		};
+
+		cutTree = () => {
+			$('.game-tile').click(() => {
+				console.log('good');
+			});
+		};
+
+		cutTree();
+
+		checkConditions();
+
+		class World {
+			constructor(earth, tree, sky, rocks) {
+				this.earth = earth;
+			}
+
+			createWorld = () => {};
+
+			cutTree = () => {
+				conditions.cut = true;
+				checkConditions(condition.cut);
+				console.log("works")
+			};
+
+			digEarth = () => {};
+
+			mineRock = () => {};
+		}
+
+		let mineCraft = new World();
+
+		cutTree = () => {
+				//conditions.cut = true;
+				//checkConditions(condition.cut);
+				workMode("")
+			};
+
+		// document.querySelector(".btn-dig").addEventListener("click", () => {
+		//     cutTree();
+		// })
+			$("#axeImg").click( () => {
+				cutTree();
+			})
+		
+	</script>
+</html>
