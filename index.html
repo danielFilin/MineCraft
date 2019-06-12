@@ -36,7 +36,8 @@
 
 		for (let i = 0; i < 20; i++) {
 			for (let x = 0; x < 20; x++) {
-				let el = $('<div/>');
+                let el = $('<div/>');
+                el.addClass("game-tile")
 				if (i < 14) {
 					el.css({
 						width: '5%',
@@ -59,10 +60,19 @@
 
 		checkConditions = () => {
             if("cut".indexOf(conditions)){
-                console.log("ds")
+                
             }
       
     }
+
+
+    cutTree = () => {
+				$(".game-tile").click( () => {
+                    console.log("good");
+                })
+            };
+            
+    cutTree();
 
         checkConditions();
 
