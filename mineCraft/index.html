@@ -185,7 +185,7 @@
 					}
 			}
 				if (i >= 7 && i <= 9) {
-					
+
 					if (x%5 ===0 || x%5 ===1 || x%5 ===4) {
 						el.addClass('treetop');
 						el.css({
@@ -198,20 +198,6 @@
 			parent.append(el);
 		}
 	}
-		checkConditions = () => {
-			if ('cut'.indexOf(conditions)) {
-			}
-		};
-
-		cutTree = () => {
-			$('.game-tile').click(() => {
-				console.log('good');
-			});
-		};
-
-		cutTree();
-
-		checkConditions();
 
 		class World {
 			constructor(earth, tree, sky, rocks) {
@@ -219,32 +205,26 @@
 			}
 
 			createWorld = () => {};
-
-			cutTree = () => {
-				conditions.cut = true;
-				checkConditions(condition.cut);
-				console.log("works")
-			};
-
-			digEarth = () => {};
-
-			mineRock = () => {};
 		}
 
 		let mineCraft = new World();
 
-		cutTree = () => {
-				//conditions.cut = true;
-				//checkConditions(condition.cut);
-				workMode("")
-			};
-
-		// document.querySelector(".btn-dig").addEventListener("click", () => {
-		//     cutTree();
-		// })
+		workMode = (myClass, myClass2) => {
+			$('.game-tile').off('click').on('click',function(e){
+				e.target.classList.remove(myClass, myClass2);
+			});
+		}
 			$("#axeImg").click( () => {
-				cutTree();
+					workMode("tree", "treetop");
 			})
-		
+
+			$("#shovel").click( () => {
+					workMode("dirt");
+			})
+
+			$("#mineAxe").click( () => {
+				workMode("smallRock");
+			})
+
 	</script>
 </html>
