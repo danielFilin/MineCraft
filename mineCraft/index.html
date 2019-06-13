@@ -13,14 +13,13 @@
 		<style>
 			html,
 			body {
-				height: 80%;
+				width: 100%;
 			}
-
 			.great-parent{
-				margin: 0;
-				padding: 0;
+				margin: auto;
+				padding: auto;
+				width: 100%;
 			}
-
 			.sidenav {
 				width: 100%;
 				height: 15vh;
@@ -31,7 +30,6 @@
 				padding-top: 20px;
 				
 			}
-
 			/* The navigation menu links */
 			.sidenav a {
 				padding: 6px 8px 6px 16px;
@@ -40,17 +38,14 @@
 				color: #818181;
 				display: inline;
 			}
-
 			img:hover {
 				box-shadow: 0 2px 25px rgba(192, 192, 182, 0.7);
 			}
-
 			/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 			@media screen and (max-height: 450px) {
 				.sidenav {
 					padding-top: 15px;
 				}
-
 				.sidenav a {
 					font-size: 18px;
 				}
@@ -58,7 +53,6 @@
 			img {
 				height: 10vh;
 			}
-
 			.parent-div {
 				height: 100%;
 				width: 100%;
@@ -66,13 +60,11 @@
 				background-size: cover;
 				background-repeat: no-repeat;
 			}
-
 			.sky {
 				margin: 2px;
 				height: 100%;
 				width: 100%;
 			}
-
 			.dirt {
 				margin: 2px;
 				height: 100%;
@@ -80,7 +72,6 @@
 				background-image: url('./minePic/dirt.jpg');
 				background-size: cover;
 			}
-
 			.tree {
 				margin: 2px;
 				height: 100%;
@@ -88,7 +79,6 @@
 				background-image: url('./minePic/tree.jpg');
 				background-size: cover;
 			}
-
 			.treetop {
 				margin: 2px;
 				height: 100%;
@@ -96,7 +86,6 @@
 				background-image: url('./minePic/treetop.jpg');
 				background-size: cover;
 			}
-
 			.smallRock {
 				margin: 2px;
 				height: 100%;
@@ -104,7 +93,6 @@
 				background-image: url('./minePic/smallrocks.jpg');
 				background-size: cover;
 			}
-
 			.gold {
 				margin: 2px;
 				height: 100%;
@@ -112,31 +100,29 @@
 				background-image: url('./minePic/gold.jpg');
 				background-size: cover;
 			}
-
 			#inventory {
 				height: 100px;
 				width: 100%;
 			}
-
-
 			.parent-div{
 				height: 85vh;
 				margin: 0;
+				width: 100%;
 			}
-
 		
 		</style>
 	</head>
 
-	<div class="container h-100 great-parent">
+	<div class="containerf h-100 great-parent">
 					<div class="sidenav">
 							<a href="#"><img id="axeImg" src="minePic/axe.png"/></a>
 							<a href="#"><img id="shovel" src="minePic/shovel.png"/></a>
 							<a href="#"><img id="mineAxe" src="minePic/mineaxe.png"/></a>
-							<a href="#">reset button</a>
-							<a href="#">pause button</a>
-							<a href="#">play button</a>
-							<div id="inventory">Inventory</div>
+							<a href="#" id="inventory">Inventory</a>
+							<a href="#">reset</a>
+							<a href="#">pause</a>
+							<a href="#">play</a>
+							
 						</div>
 			<div class="row parent-div"></div>
 		
@@ -144,7 +130,6 @@
 
 	<script>
 		let parent = $('.parent-div');
-
 		let conditions = ['cut', 'dig', 'mine'];
 		console.log(conditions.cut);
 		let randomNumTree = Math.ceil(Math.random() * 7);
@@ -199,7 +184,6 @@
 						});
 					}
 				}
-
 				if (i >= 7 && i <= 9) {
 					if (x % randomNumTree === 0 || x % randomNumTree === randomNumBranches-1 || x % randomNumTree === randomNumTree-randomNumBranches) {
 						el.addClass('treetop');
@@ -228,44 +212,47 @@
 				parent.append(el);
 			}
 		}
-
 		class World {
 			constructor(earth, tree, sky, rocks) {
 				this.earth = earth;
 			}
-
 			createWorld = () => {};
 		}
-
 		sendToStock = stock => {
 			$("#inventory").empty();
+			$("#inventory").text("product");
 			let el = $('<div/>');
 			el.addClass(stock);
 			el.addClass('my-inventory');
 			el.css({
-				width: '10%',
-				height: '40%',
+				width: '5%',
+				height: '50%',
+				display: "inline-block"
 			});
 			$('#inventory').append(el);
 			$('.my-inventory').click(() => {
 				$('.game-tile')
 					.off('click')
 					.on('click', function(e) {
-						let myTile = e.target;
 						console.log(stock);
+						let myTile = e.target;
 						myTile.classList.add(stock);
 						stock = '';
 						$("#inventory").empty();
 					});
 			});
 		};
-
 		workMode = (myClass, myClass2) => {
 			$('.game-tile')
 				.off('click')
 				.on('click', function(e) {
+					if(myClass === e.target.classList[1] ){
+						sendToStock(myClass);
+					}
 					e.target.classList.remove(myClass, myClass2);
-					sendToStock(myClass);
+			
+					
+			
 				});
 		};
 		$('#axeImg').click(() => {
@@ -274,14 +261,12 @@
 			$('#shovel').css("background-color", "transparent");
 			$('#mineAxe').css('background-color', 'transparent');
 		});
-
 		$('#shovel').click(() => {
 			workMode('dirt');
 			$('#shovel').css("background-color", "blue");
 			$('#mineAxe').css("background-color", "transparent");
 			$('#axeImg').css('background-color', 'transparent');
 		});
-
 		$('#mineAxe').click(() => {
 			workMode('smallRock');
 			$('#mineAxe').css("background-color", "purple");
