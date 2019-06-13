@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 		<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+		<!-- <link rel="stylesheet" href="../mineCraft/css/index.css"> -->
 		<title>Document</title>
 
 		<style>
@@ -18,7 +19,7 @@
 			.sidenav {
 				height: 100%;
 				/* Full-height: remove this if you want "auto" height */
-				width: 160px;
+				width: 15%;
 				/* Set the width of the sidebar */
 				position: fixed;
 				/* Fixed Sidebar (stay in place on scroll) */
@@ -82,6 +83,12 @@
 				background-repeat: no-repeat;
 			}
 
+			.sky {
+				margin: 2px;
+				height: 100%;
+				width: 100%;
+			}
+
 			.dirt {
 				margin: 2px;
 				height: 100%;
@@ -121,18 +128,30 @@
 				background-image: url('./minePic/gold.jpg');
 				background-size: cover;
 			}
+
+			#inventory {
+				height: 100px;
+				width: 100%;
+			}
 		</style>
 	</head>
+
 	<div class="container h-100 w-100">
-		<div class="sidenav">
-			<a href="#"><img id="axeImg" src="./axe.jpg"/></a>
-			<a href="#"><img id="shovel" src="./shovel.jpg"/></a>
-			<a href="#"><img id="mineAxe" src="./mineaxe.jpg"/></a>
-			<a href="#">reset button</a>
-			<a href="#">pause button</a>
-			<a href="#">play button</a>
+		<div class="row">
+			
+			<div class="sidenav">
+				<a href="#"><img id="axeImg" src="./axe.jpg"/></a>
+				<a href="#"><img id="shovel" src="./shovel.jpg"/></a>
+				<a href="#"><img id="mineAxe" src="./mineaxe.jpg"/></a>
+				<a href="#">reset button</a>
+				<a href="#">pause button</a>
+				<a href="#">play button</a>
+				<div id="inventory">Inventory</div>
+			</div>
+			
 		</div>
-		<div class="row h-100 w-100 parent-div"></div>
+			<div class="row h-100 w-100 parent-div"></div>
+		
 	</div>
 
 	<script>
@@ -140,8 +159,9 @@
 
 		let conditions = ['cut', 'dig', 'mine'];
 		console.log(conditions.cut);
-
+		let randomNumTree = Math.ceil(Math.random() * 7);
 		for (let i = 0; i < 20; i++) {
+			let randomNumBranches = Math.ceil(Math.random() * 2);
 			for (let x = 0; x < 20; x++) {
 				let randomNumGold = Math.ceil(Math.random() * 40);
 				let randomNumStone = Math.ceil(Math.random() * 4);
@@ -174,30 +194,52 @@
 						height: '5%',
 					});
 				}
-				 if (i >= 10 && i <= 13) {
-					if (x%5 ===0) {
+				if (i >= 10 && i <= 13) {
+					if (x % randomNumTree === 0) {
 						el.addClass('tree');
 						el.css({
-						width: '5%',
-						margin: '0',
-						height: '5%',
-					});
+							width: '5%',
+							margin: '0',
+							height: '5%',
+						});
+					} else {
+						el.addClass('sky');
+						el.css({
+							width: '5%',
+							margin: '0',
+							height: '5%',
+						});
 					}
-			}
-				if (i >= 7 && i <= 9) {
+				}
 
-					if (x%5 ===0 || x%5 ===1 || x%5 ===4) {
+				if (i >= 7 && i <= 9) {
+					if (x % randomNumTree === 0 || x % randomNumTree === randomNumBranches-1 || x % randomNumTree === randomNumTree-randomNumBranches) {
 						el.addClass('treetop');
 						el.css({
+							width: '5%',
+							margin: '0',
+							height: '5%',
+						});
+					} else {
+						el.addClass('sky');
+						el.css({
+							width: '5%',
+							margin: '0',
+							height: '5%',
+						});
+					}
+				}
+				if (i <= 6) {
+					el.addClass('sky');
+					el.css({
 						width: '5%',
 						margin: '0',
 						height: '5%',
 					});
-					}
+				}
+				parent.append(el);
 			}
-			parent.append(el);
 		}
-	}
 
 		class World {
 			constructor(earth, tree, sky, rocks) {
@@ -207,24 +249,49 @@
 			createWorld = () => {};
 		}
 
-		let mineCraft = new World();
+		sendToStock = stock => {
+			$("#inventory").empty();
+			let el = $('<div/>');
+			el.addClass(stock);
+			el.addClass('my-inventory');
+			el.css({
+				width: '30%',
+				marginLeft: 50 + 'px',
+				height: '40%',
+			});
+			$('#inventory').append(el);
+			$('.my-inventory').click(() => {
+				$('.game-tile')
+					.off('click')
+					.on('click', function(e) {
+						let myTile = e.target;
+						console.log(stock);
+						myTile.classList.add(stock);
+						stock = '';
+						$("#inventory").empty();
+					});
+			});
+		};
 
 		workMode = (myClass, myClass2) => {
-			$('.game-tile').off('click').on('click',function(e){
-				e.target.classList.remove(myClass, myClass2);
-			});
-		}
-			$("#axeImg").click( () => {
-					workMode("tree", "treetop");
-			})
+			$('.game-tile')
+				.off('click')
+				.on('click', function(e) {
+					e.target.classList.remove(myClass, myClass2);
+					sendToStock(myClass);
+				});
+		};
+		$('#axeImg').click(() => {
+			workMode('tree', 'treetop');
+			$('#axeImg').css('background-color', 'yellow');
+		});
 
-			$("#shovel").click( () => {
-					workMode("dirt");
-			})
+		$('#shovel').click(() => {
+			workMode('dirt');
+		});
 
-			$("#mineAxe").click( () => {
-				workMode("smallRock");
-			})
-
+		$('#mineAxe').click(() => {
+			workMode('smallRock');
+		});
 	</script>
 </html>
