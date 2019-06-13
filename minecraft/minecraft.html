@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Collapsible sidebar using Bootstrap 4</title>
+    <title>Minecraft</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
@@ -91,16 +91,28 @@
     <!-- audioplay-auto -->
     <audio src="./minecraft-music.mp3" loop="loop" id="my_audio"></audio>
 
+    <audio src="./axe.wav" id="axe-audio"></audio>
+    <audio src="./shovel.wav" id="shovel-audio"></audio>
+    <audio src="./mineAxe.wav" id="mineAxe-audio"></audio>
+
+
 
 
 
     <div class="sidenav">
-        <a href="#"><img id="axeImg" src="./axe.jpg"></a>
+        <a href="#"><img id="axe" src="./axe.jpg"></a>
         <a href="#"><img id="shovel" src="./shovel.jpg"></a>
         <a href="#"><img id="mineAxe" src="./mineaxe.jpg"></a>
-        <a href="#">reset button</a>
-        <a href="#">pause button</a>
-        <a href="#">play button</a>
+        <a href="#" id="appendHere"></a>
+        
+        <a href="#">
+            <form>
+                <input type="submit" value="Reset" />
+            </form>
+        </a>
+        <a href="#" id="pause">pause</a>
+        <a href="#" id="play">play</a>
+
 
 
 
@@ -111,6 +123,43 @@
         window.onload = function () {
             document.getElementById("my_audio").play();
         }
+
+        var pauseBotton = document.getElementById("pause");
+        var playButton = document.getElementById("play");
+
+        pauseBotton.addEventListener("click", pauseMusic);
+        playButton.addEventListener("click", playMusic);
+
+        function pauseMusic() {
+            document.getElementById("my_audio").pause();
+        }
+
+        function playMusic() {
+            document.getElementById("my_audio").play();
+        }
+
+
+        var axe = document.getElementById("axe");
+        var shovel = document.getElementById("shovel");
+        var mineAxe = document.getElementById("mineAxe");
+
+        axe.addEventListener("click", axeSound);
+        shovel.addEventListener("click", shovelSound);
+        mineAxe.addEventListener("click", mineAxeSound);
+
+
+        function axeSound() {
+            document.getElementById("axe-audio").play();
+        }
+
+        function shovelSound() {
+            document.getElementById("shovel-audio").play();
+        }
+
+        function mineAxeSound() {
+            document.getElementById("mineAxe-audio").play();
+        }
+
 
     </script>
 
