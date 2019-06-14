@@ -38,7 +38,7 @@ for (let i = 0; i < xAxis; i++) {
                 height: '5%',
             });
         }
-        if (i >= (xAxis*0.5) && i <= (xAxis*0.7)) {
+        if (i >= (xAxis*0.501) && i <= (xAxis*0.7)) {
             if (x % randomNumTree === 0) {
                 el.addClass('tree');
                 el.css({
@@ -55,7 +55,7 @@ for (let i = 0; i < xAxis; i++) {
                 });
             }
         }
-        if (i >= (xAxis*0.30) && i <= (xAxis*0.5)) {
+        if (i >= (xAxis*0.301) && i <= (xAxis*0.5)) {
             if (
                 x % randomNumTree === 0 ||
                 x % randomNumTree === randomNumBranches - 1 ||
@@ -69,7 +69,7 @@ for (let i = 0; i < xAxis; i++) {
                     height: '5%',
                 });
             } else {
-                el.addClass('sky');
+                //el.addClass('sky');
                 el.css({
                     width: '5%',
                     margin: '0',
@@ -85,6 +85,11 @@ for (let i = 0; i < xAxis; i++) {
                 height: '5%',
             });
         }
+
+        if(el.hasClass("tree") || el.hasClass("dirt") || el.hasClass("treetop")|| el.hasClass("smallRock")){
+            el.removeClass("sky")
+        }
+
         parent.append(el);
     }
 }
@@ -122,9 +127,10 @@ harvestMode = (myClass, myClass2) => {
     $('.game-tile')
         .off('click')
         .on('click', function(e) {
-            if (myClass === e.target.classList[2]) {
+            console.log(myClass, myClass2);
+            if (myClass === e.target.classList[1]){
                 sendToStock(myClass);
-            }else if (myClass2 === e.target.classList[2]) {
+            }else if (myClass2 === e.target.classList[1]){
                 sendToStock(myClass2);
             }
             e.target.classList.remove(myClass, myClass2);
