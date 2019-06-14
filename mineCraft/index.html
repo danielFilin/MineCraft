@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 		<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
-		<!-- <link rel="stylesheet" href="../mineCraft/css/index.css"> -->
+		
 		<title>Document</title>
 
 		<style>
@@ -15,7 +15,7 @@
 			body {
 				width: 100%;
 			}
-			.great-parent{
+			.great-parent {
 				margin: auto;
 				padding: auto;
 				width: 100%;
@@ -28,7 +28,6 @@
 				overflow-y: hidden;
 				/* Disable horizontal scroll */
 				padding-top: 20px;
-				
 			}
 			/* The navigation menu links */
 			.sidenav a {
@@ -104,35 +103,39 @@
 				height: 100px;
 				width: 100%;
 			}
-			.parent-div{
+			.parent-div {
 				height: 85vh;
 				margin: 0;
 				width: 100%;
 			}
-		
 		</style>
 	</head>
 
 	<div class="containerf h-100 great-parent">
-					<div class="sidenav">
-							<a href="#"><img id="axeImg" src="minePic/axe.png"/></a>
-							<a href="#"><img id="shovel" src="minePic/shovel.png"/></a>
-							<a href="#"><img id="mineAxe" src="minePic/mineaxe.png"/></a>
-							<a href="#" id="inventory">Inventory</a>
-							<a href="#">reset</a>
-							<a href="#">pause</a>
-							<a href="#">play</a>
-							
-						</div>
-			<div class="row parent-div"></div>
-		
+		<div class="sidenav">
+			<a href="#"><img id="axeImg" src="minePic/axe.png"/></a>
+			<a href="#"><img id="shovel" src="minePic/shovel.png"/></a>
+			<a href="#"><img id="mineAxe" src="minePic/mineaxe.png"/></a>
+			<a href="#" id="inventory">Inventory</a>
+			<a href="#">reset</a>
+			<a href="#">pause</a>
+			<a href="#">play</a>
+			<div class="container">
+					<input type="number" class="form-control d-inline-block w-25">
+			</div>
+	
+		</div>
+		<div class="row parent-div"></div>
 	</div>
 
 	<script>
 		let parent = $('.parent-div');
-		let conditions = ['cut', 'dig', 'mine'];
-		console.log(conditions.cut);
-		let randomNumTree = Math.ceil(Math.random() * 7);
+
+		// this function creates a random world;
+		createWorld = () => {
+
+		}
+		let randomNumTree = Math.ceil(Math.random() * 6 +2);
 		for (let i = 0; i < 20; i++) {
 			let randomNumBranches = Math.ceil(Math.random() * 2);
 			for (let x = 0; x < 20; x++) {
@@ -185,7 +188,12 @@
 					}
 				}
 				if (i >= 7 && i <= 9) {
-					if (x % randomNumTree === 0 || x % randomNumTree === randomNumBranches-1 || x % randomNumTree === randomNumTree-randomNumBranches) {
+					if (
+						x % randomNumTree === 0 ||
+						x % randomNumTree === randomNumBranches - 1 ||
+						x % randomNumTree === randomNumTree - randomNumBranches||
+						x % randomNumTree === randomNumBranches -2
+					) {
 						el.addClass('treetop');
 						el.css({
 							width: '5%',
@@ -212,65 +220,68 @@
 				parent.append(el);
 			}
 		}
-		class World {
-			constructor(earth, tree, sky, rocks) {
-				this.earth = earth;
-			}
-			createWorld = () => {};
-		}
+
+
+		// sends the harvested element to stock
 		sendToStock = stock => {
-			$("#inventory").empty();
-			$("#inventory").text("product");
+			$('#inventory').empty();
+			$('#inventory').text('product');
 			let el = $('<div/>');
 			el.addClass(stock);
 			el.addClass('my-inventory');
 			el.css({
 				width: '5%',
 				height: '50%',
-				display: "inline-block"
+				display: 'inline-block',
 			});
 			$('#inventory').append(el);
+				//this part appends the harvested element back to the game-world; 
 			$('.my-inventory').click(() => {
 				$('.game-tile')
 					.off('click')
-					.on('click', function(e) {
-						console.log(stock);
+					.on('click', function(e) {	
 						let myTile = e.target;
 						myTile.classList.add(stock);
 						stock = '';
-						$("#inventory").empty();
+						$('#inventory').empty();
 					});
 			});
 		};
-		workMode = (myClass, myClass2) => {
+
+
+		// harvest mode function; also calls the functions that will send the harvested piece to storage. 
+		harvestMode = (myClass, myClass2) => {
 			$('.game-tile')
 				.off('click')
 				.on('click', function(e) {
-					if(myClass === e.target.classList[1] ){
+					if (myClass === e.target.classList[1]) {
+						//
 						sendToStock(myClass);
 					}
 					e.target.classList.remove(myClass, myClass2);
-			
-					
-			
 				});
 		};
+
+		// event listeners of the different tooles that we use to harvest our products. 
+
 		$('#axeImg').click(() => {
-			workMode('tree', 'treetop');
+			harvestMode('tree', 'treetop');
 			$('#axeImg').css('background-color', 'yellow');
-			$('#shovel').css("background-color", "transparent");
+			$('#shovel').css('background-color', 'transparent');
 			$('#mineAxe').css('background-color', 'transparent');
 		});
+
 		$('#shovel').click(() => {
-			workMode('dirt');
-			$('#shovel').css("background-color", "blue");
-			$('#mineAxe').css("background-color", "transparent");
+			harvestMode('dirt');
+			$('#shovel').css('background-color', 'blue');
+			$('#mineAxe').css('background-color', 'transparent');
 			$('#axeImg').css('background-color', 'transparent');
 		});
+
 		$('#mineAxe').click(() => {
-			workMode('smallRock');
-			$('#mineAxe').css("background-color", "purple");
-			$('#shovel').css("background-color", "transparent");
+			harvestMode('smallRock');
+			$('#mineAxe').css('background-color', 'purple');
+			$('#shovel').css('background-color', 'transparent');
 			$('#axeImg').css('background-color', 'transparent');
 		});
 	</script>
