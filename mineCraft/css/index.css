@@ -3,12 +3,7 @@ body {
     width: 100%;
     
 }
-
-#modal {
-    display: none; 
-}
-
-#modal2{
+#modal, #modal2 {
     display: none; 
 }
 
@@ -22,14 +17,11 @@ body {
 .sidenav {
     display: contents;
     position: fixed;
-    
-    
 }
 .sidenav a {
     margin-right: 0.5rem;
     text-decoration: none;
     color: #818181;    
-
 }
 img:hover {
     box-shadow: 0 2px 25px rgba(192, 192, 182, 0.7);
@@ -57,7 +49,7 @@ img {
 .parent-div {
     height: 100%;
     width: 100%;
-    background-image: url('./minePic/bluesky.jpg');
+    background-image: url('..minePic/bluesky.jpg');
     background-size: cover;
     background-repeat: repeat;
     background-color: skyblue;
@@ -65,23 +57,23 @@ img {
 }
 
 .dirt {
-    background-image: url('./minePic/dirt.jpg');
+    background-image: url('../minePic/dirt.jpg');
     background-size: cover;
 }
 .tree {
-    background-image: url('./minePic/tree.jpg');
+    background-image: url('../minePic/tree.jpg');
     background-size: cover;
 }
 .treetop {
-    background-image: url('./minePic/treetop.jpg');
+    background-image: url('../minePic/treetop.jpg');
     background-size: cover;
 }
 .smallRock {
-    background-image: url('./minePic/smallrocks.jpg');
+    background-image: url('../minePic/smallrocks.jpg');
     background-size: cover;
 }
 .gold {
-    background-image: url('./minePic/gold.jpg');
+    background-image: url('../minePic/gold.jpg');
     background-size: cover;
 }
 .sky {
@@ -92,11 +84,9 @@ img {
     display: inline-block;
     font-size: 2vh;
     height: 3vh;
-    
-    
 } 
 .parent-div {
-    height: 85vh;
+    height: 91vh;
     margin: 0;
     width: 100%;
 }
@@ -111,7 +101,6 @@ img {
 .my-span{
     font-size: 0.5rem; 
     color: white;
-
 }
 
 .world-btn{

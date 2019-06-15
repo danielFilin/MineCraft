@@ -151,7 +151,7 @@ harvestMode = (myClass, myClass2) => {
         .off('click')
         .on('click', function (e) {
             console.log(myClass, myClass2)
-            if (e.target.style.backgroundImage === 'url("minePic/biterBig.png")') {
+            if (e.target.style.backgroundImage === 'url("../minePic/biterBig.png")') {
                 $('#modal2').css("display", "block")
             } else {
                 if (myClass === e.target.classList[1]) {
@@ -183,21 +183,21 @@ plantMode = (plantClass) => {
     $('.game-tile')
         .off('click')
         .on('click', function (e) {
-            if (e.target.style.backgroundImage === 'url("minePic/biterBig.png")') {
+            if (e.target.style.backgroundImage === 'url("../minePic/biterBig.png")') {
                 $('#modal2').css("display", "block")
             } else {
                 bitterCounter--;
                 if (plantClass === "biter") {
                     document.getElementById("avi-audio").play();
                     if (bitterCounter >= 0) {
-                        e.target.style.backgroundImage = "url('minePic/biterBig.png')";
+                        e.target.style.backgroundImage = "url('../minePic/biterBig.png')";
                         e.target.style.backgroundSize = "cover";
                     } else {
                         $('#modal').css("display", "block")
 
                     }
                 } else if (e.target.classList[1] === "sky") {
-                    e.target.style.backgroundImage = "url('minePic/birds.gif')";
+                    e.target.style.backgroundImage = "url('../minePic/birds.gif')";
                     e.target.style.backgroundSize = "cover";
                 }
             }
