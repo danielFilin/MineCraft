@@ -150,7 +150,8 @@ plantMode = (plantClass) => {
                     e.target.style.backgroundImage = "url('minePic/biterBig.png')";
                     e.target.style.backgroundSize = "cover";
                 }else {
-                    
+                    $('#modal').css("display", "block")
+                
                 }
             }else if (e.target.classList[1] === "sky") {
                 e.target.style.backgroundImage = "url('minePic/birds.gif')";
@@ -165,26 +166,20 @@ plantMode = (plantClass) => {
 
 $('#axeImg').click(() => {
     harvestMode('tree', 'treetop');
+    $('.my-options').css('background-color', 'transparent');
     $('#axeImg').css('background-color', 'yellow');
-    $('#shovel').css('background-color', 'transparent');
-    $('#mineAxe').css('background-color', 'transparent');
-    $('#birds').css('background-color', 'transparent');
 });
 
 $('#shovel').click(() => {
     harvestMode('dirt');
+    $('.my-options').css('background-color', 'transparent');
     $('#shovel').css('background-color', 'blue');
-    $('#mineAxe').css('background-color', 'transparent');
-    $('#axeImg').css('background-color', 'transparent');
-    $('#birds').css('background-color', 'transparent');
 });
 
 $('#mineAxe').click(() => {
     harvestMode('smallRock', 'gold');
+    $('.my-options').css('background-color', 'transparent');
     $('#mineAxe').css('background-color', 'purple');
-    $('#shovel').css('background-color', 'transparent');
-    $('#axeImg').css('background-color', 'transparent');
-    $('#birds').css('background-color', 'transparent');
 });
 
 $('#aviBiter').click(() => {
@@ -192,6 +187,7 @@ $('#aviBiter').click(() => {
 })
 
 $('#birds').click(() => {
+    $('.my-options').css('background-color', 'transparent');
     $('#birds').css('background-color', 'rgb(241, 119, 241)');
     plantMode('birds');
 })

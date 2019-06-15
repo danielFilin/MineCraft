@@ -2,6 +2,11 @@ html,
 body {
     width: 100%;
 }
+
+#modal {
+    display: none; 
+}
+
 .great-parent {
     margin: auto;
     padding: auto;

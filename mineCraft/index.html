@@ -7,18 +7,29 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 		<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" href="./index.css">
 		
 		<title>Document</title>
 	</head>
 
 	<div class="containerf h-100 great-parent">
+			<div id="modal" class="w3-modal">
+                    <div class="w3-modal-content">
+                        <div class="w3-container">
+                            <span onclick="document.getElementById('modal').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                            <h1>You are trying to use Avi Biter To often</h1>
+                            <h3>Avi Biter is unique. You can find him only in the most depressive parts of our planet and he brings with him sorrow, pain and tears. You cannot use him too often!
+							</h3>
+                        </div>
+                    </div>
+                </div>
 		<div class="sidenav my-navbar">
-			<a href="#"><img id="axeImg" src="minePic/axe.png"/></a>
-			<a href="#"><img id="shovel" src="minePic/shovel.png"/></a>
-			<a href="#"><img id="mineAxe" src="minePic/mineaxe.png"/></a>
-			<a href="#"><img id="aviBiter" src="minePic/biter.jpg"/></a>
-			<a href="#"><img id="birds" src="minePic/birds.gif"/></a>
+			<a href="#"><img id="axeImg" class="my-options" src="minePic/axe.png"/></a>
+			<a href="#"><img id="shovel" class="my-options" src="minePic/shovel.png"/></a>
+			<a href="#"><img id="mineAxe" class="my-options" src="minePic/mineaxe.png"/></a>
+			<a href="#"><img id="aviBiter" class="my-options" src="minePic/biter.jpg"/></a>
+			<a href="#"><img id="birds" class="my-options" src="minePic/birds.gif"/></a>
 			<a href="#" id="inventory">Inventory</a>
 			<a href="#">reset</a>
 			<a href="#">pause</a>
