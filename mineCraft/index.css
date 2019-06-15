@@ -74,10 +74,12 @@ img {
     background-color: skyblue;
 }
 
-#inventory {
-    height: 100px;
-    width: 100%;
-}
+ #inventory {
+    display: inline-block;
+    width: 8%;
+    height: 50px;
+    
+} 
 .parent-div {
     height: 80vh;
     margin: 0;

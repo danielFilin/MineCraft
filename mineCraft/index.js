@@ -154,9 +154,10 @@ sendToStock = stock => {
     let el = $('<div/>');
     el.addClass(stock);
     el.addClass('my-inventory');
+    console.log(stock)
     el.css({
-        width: '5%',
-        height: '50%',
+        width: '100%',
+        height: '100%',
         display: 'inline-block',
     });
     $('#inventory').append(el);
