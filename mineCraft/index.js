@@ -1,6 +1,57 @@
 let parent = $('.parent-div');
 let bitterCounter = 5; 
 
+//music starts once the page is loaded
+window.onload = function() {
+    document.getElementById("minecraft-audio").play();
+}
+
+
+//pause music button
+$('#pause').click(function(){
+    document.getElementById("minecraft-audio").pause();
+
+})
+
+//play music button
+$('#play').click(function(){
+    document.getElementById("minecraft-audio").play();
+
+})
+
+//axe sound effect
+$('#axeImg').click(function(){
+    document.getElementById("axe-audio").play();
+
+})
+
+//mineaxe sound effect
+$('#mineAxe').click(function(){
+    document.getElementById("mineAxe-audio").play();
+
+})
+
+//shovel sound effect
+
+$('#shovel').click(function(){
+    document.getElementById("shovel-audio").play();
+
+})
+
+// birds sound effect
+$('#birds').click(function(){
+    document.getElementById("birds-audio").play();
+
+})
+
+//Avi Biteround effect
+$('#aviBiter').click(function(){
+    document.getElementById("avi-audio").play();
+
+})
+
+
+
 // this function creates a random world;
 createWorld = (xAxis) => {
     let randomNumTree = Math.ceil(Math.random() * 6 + 2);

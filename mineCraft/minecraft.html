@@ -33,7 +33,6 @@
             /* Disable horizontal scroll */
             padding-top: 20px;
         }
-
         /* The navigation menu links */
         .sidenav a {
             padding: 6px 8px 6px 16px;
@@ -41,37 +40,29 @@
             font-size: 25px;
             color: #818181;
             display: block;
-
         }
-
         img:hover {
             box-shadow: 0 2px 25px rgba(192, 192, 182, .7);
         }
-
-
         /* When you mouse over the navigation links, change their color */
         .sidenav a:hover {
             color: #f1f1f1;
         }
-
         /* Style page content */
         .main {
             margin-left: 160px;
             /* Same as the width of the sidebar */
             padding: 0px 10px;
         }
-
         /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
         @media screen and (max-height: 450px) {
             .sidenav {
                 padding-top: 15px;
             }
-
             .sidenav a {
                 font-size: 18px;
             }
         }
-
         img {
             height: 10vh;
         }
@@ -116,44 +107,31 @@
         window.onload = function () {
             document.getElementById("my_audio").play();
         }
-
         var pauseBotton = document.getElementById("pause");
         var playButton = document.getElementById("play");
-
         pauseBotton.addEventListener("click", pauseMusic);
         playButton.addEventListener("click", playMusic);
-
         function pauseMusic() {
             document.getElementById("my_audio").pause();
         }
-
         function playMusic() {
             document.getElementById("my_audio").play();
         }
-
-
         var axe = document.getElementById("axe");
         var shovel = document.getElementById("shovel");
         var mineAxe = document.getElementById("mineAxe");
-
         axe.addEventListener("click", axeSound);
         shovel.addEventListener("click", shovelSound);
         mineAxe.addEventListener("click", mineAxeSound);
-
-
         function axeSound() {
             document.getElementById("axe-audio").play();
         }
-
         function shovelSound() {
             document.getElementById("shovel-audio").play();
         }
-
         function mineAxeSound() {
             document.getElementById("mineAxe-audio").play();
         }
-
-
     </script>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
