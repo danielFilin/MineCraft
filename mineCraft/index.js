@@ -19,37 +19,6 @@ $('#play').click(function(){
 
 })
 
-//axe sound effect
-$('#axeImg').click(function(){
-    document.getElementById("axe-audio").play();
-
-})
-
-//mineaxe sound effect
-$('#mineAxe').click(function(){
-    document.getElementById("mineAxe-audio").play();
-
-})
-
-//shovel sound effect
-
-$('#shovel').click(function(){
-    document.getElementById("shovel-audio").play();
-
-})
-
-// birds sound effect
-$('#birds').click(function(){
-    document.getElementById("birds-audio").play();
-
-})
-
-//Avi Biteround effect
-$('#aviBiter').click(function(){
-    document.getElementById("avi-audio").play();
-
-})
-
 
 
 // this function creates a random world;
@@ -143,6 +112,7 @@ createWorld = (xAxis) => {
             }
 
             parent.append(el);
+            
         }
     }
 }
@@ -184,8 +154,10 @@ harvestMode = (myClass, myClass2) => {
                 sendToStock(myClass);
             } else if (myClass2 === e.target.classList[1]) {
                 sendToStock(myClass2);
+
             }
             e.target.classList.remove(myClass, myClass2);
+
         });
 };
 
@@ -220,27 +192,36 @@ $('#axeImg').click(() => {
     harvestMode('tree', 'treetop');
     $('.my-options').css('background-color', 'transparent');
     $('#axeImg').css('background-color', 'yellow');
+    document.getElementById("axe-audio").play();
+
 });
 
 $('#shovel').click(() => {
     harvestMode('dirt');
     $('.my-options').css('background-color', 'transparent');
     $('#shovel').css('background-color', 'blue');
+    document.getElementById("shovel-audio").play();
+
 });
 
 $('#mineAxe').click(() => {
     harvestMode('smallRock', 'gold');
     $('.my-options').css('background-color', 'transparent');
     $('#mineAxe').css('background-color', 'purple');
+    document.getElementById("mineAxe-audio").play();
+
 });
 
 $('#aviBiter').click(() => {
     plantMode('biter');
+    document.getElementById("avi-audio").play();
+
 })
 
 $('#birds').click(() => {
     $('.my-options').css('background-color', 'transparent');
     $('#birds').css('background-color', 'rgb(241, 119, 241)');
+    document.getElementById("birds-audio").play();
     plantMode('birds');
 })
 
