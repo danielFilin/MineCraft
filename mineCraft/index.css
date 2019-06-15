@@ -8,6 +8,10 @@ body {
     display: none; 
 }
 
+#modal2{
+    display: none; 
+}
+
 .great-parent {
     margin: auto;
     padding: auto;

@@ -1,20 +1,20 @@
 let parent = $('.parent-div');
-let bitterCounter = 5; 
+let bitterCounter = 5;
 
 //music starts once the page is loaded
-window.onload = function() {
+window.onload = function () {
     document.getElementById("minecraft-audio").play();
 }
 
 
 //pause music button
-$('#pause').click(function(){
+$('#pause').click(function () {
     document.getElementById("minecraft-audio").pause();
 
 })
 
 //play music button
-$('#play').click(function(){
+$('#play').click(function () {
     document.getElementById("minecraft-audio").play();
 
 })
@@ -112,7 +112,7 @@ createWorld = (xAxis) => {
             }
 
             parent.append(el);
-            
+
         }
     }
 }
@@ -123,8 +123,8 @@ sendToStock = stock => {
     $('#inventory').text('product');
     let el = $('<div/>');
     el.addClass(stock);
+
     el.addClass('my-inventory');
-    console.log(stock)
     el.css({
         width: '100%',
         height: '100%',
@@ -150,39 +150,57 @@ harvestMode = (myClass, myClass2) => {
     $('.game-tile')
         .off('click')
         .on('click', function (e) {
-            if (myClass === e.target.classList[1]) {
-                sendToStock(myClass);
-            } else if (myClass2 === e.target.classList[1]) {
-                sendToStock(myClass2);
+            console.log(myClass, myClass2)
+            if (e.target.style.backgroundImage === 'url("minePic/biterBig.png")') {
+                $('#modal2').css("display", "block")
+            } else {
+                if (myClass === e.target.classList[1]) {
+                    sendToStock(myClass);
+                    if (myClass === "smallRock" || myClass2 === "gold") {
+                        document.getElementById("mineAxe-audio").play();
+                    } else if (myClass === "tree" || myClass2 === "treetop") {
+                        document.getElementById("axe-audio").play();
+                    } else if (myClass === "dirt") {
+                        document.getElementById("shovel-audio").play();
+                    }
 
+                } else if (myClass2 === e.target.classList[1]) {
+                    sendToStock(myClass2);
+                    if (myClass2 === "gold") {
+                        document.getElementById("mineAxe-audio").play();
+                    } else if (myClass2 === "treetop") {
+                        document.getElementById("axe-audio").play();
+                    }
+                }
+                e.target.classList.remove(myClass, myClass2);
             }
-            e.target.classList.remove(myClass, myClass2);
-
         });
-};
 
+};
 
 
 plantMode = (plantClass) => {
     $('.game-tile')
         .off('click')
         .on('click', function (e) {
-            console.log(e.target.classList)
-            bitterCounter--;
-            if(plantClass === "biter"){
-                if(bitterCounter>=0){
-                    e.target.style.backgroundImage = "url('minePic/biterBig.png')";
+            if (e.target.style.backgroundImage === 'url("minePic/biterBig.png")') {
+                $('#modal2').css("display", "block")
+            } else {
+                bitterCounter--;
+                if (plantClass === "biter") {
+                    document.getElementById("avi-audio").play();
+                    if (bitterCounter >= 0) {
+                        e.target.style.backgroundImage = "url('minePic/biterBig.png')";
+                        e.target.style.backgroundSize = "cover";
+                    } else {
+                        $('#modal').css("display", "block")
+
+                    }
+                } else if (e.target.classList[1] === "sky") {
+                    e.target.style.backgroundImage = "url('minePic/birds.gif')";
                     e.target.style.backgroundSize = "cover";
-                }else {
-                    $('#modal').css("display", "block")
-                
                 }
-            }else if (e.target.classList[1] === "sky") {
-                e.target.style.backgroundImage = "url('minePic/birds.gif')";
-                e.target.style.backgroundSize = "cover";
             }
-          
-           
         })
 }
 
